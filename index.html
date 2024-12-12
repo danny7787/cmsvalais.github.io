@@ -1,1 +1,91 @@
 # cmsvalais.github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("kfQqU7B10nLoD1S9s"); // Replace with your Email.js User ID
+    })();
+    
+    function sendEmail(event) {
+      event.preventDefault(); // Prevent form submission
+
+      const firstName = document.getElementById('first_name').value;
+      const lastName = document.getElementById('last_name').value;
+
+      const templateParams = {
+        first_name: firstName,
+        last_name: lastName,
+      };
+
+      emailjs.send("service_hymaxfb", "template_mnko29r", templateParams)
+        .then((response) => {
+          alert("Your info has been sent successfully!");
+        }, (error) => {
+          alert("Failed to send your info. Please try again.");
+          console.error("EmailJS Error:", error);
+        });
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #007BFF;
+    }
+
+    form {
+      margin: 20px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      width: 300px;
+      border-radius: 10px;
+    }
+
+    label, input {
+      display: block;
+      margin: 10px 0;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Submit Your Info</h1>
+  <form onsubmit="sendEmail(event)">
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name" required>
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" required>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
