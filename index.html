@@ -1,11 +1,10 @@
-# cmsvalais.github.io
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Form</title>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
     (function(){
       emailjs.init("kfQqU7B10nLoD1S9s"); // Replace with your Email.js User ID
@@ -17,17 +16,23 @@
       const firstName = document.getElementById('first_name').value;
       const lastName = document.getElementById('last_name').value;
 
+      console.log("First Name:", firstName);
+      console.log("Last Name:", lastName);
+
       const templateParams = {
         first_name: firstName,
         last_name: lastName,
       };
 
+      console.log("Template Params:", templateParams);
+
       emailjs.send("service_hymaxfb", "template_mnko29r", templateParams)
         .then((response) => {
+          console.log("EmailJS Response:", response);
           alert("Your info has been sent successfully!");
         }, (error) => {
-          alert("Failed to send your info. Please try again.");
           console.error("EmailJS Error:", error);
+          alert("Failed to send your info. Please try again.");
         });
     }
   </script>
